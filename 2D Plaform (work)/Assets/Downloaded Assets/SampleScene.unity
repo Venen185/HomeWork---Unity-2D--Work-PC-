@@ -1868,9 +1868,10 @@ GameObject:
   - component: {fileID: 909998411}
   - component: {fileID: 909998413}
   - component: {fileID: 909998412}
+  - component: {fileID: 909998414}
   m_Layer: 0
   m_Name: GrassLayer
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2738,6 +2739,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &909998414
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909998410}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &916237420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,7 +2900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456629847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.84, y: 4.4, z: 0}
+  m_LocalPosition: {x: 14.29, y: 2.62, z: 0}
   m_LocalScale: {x: 7.570946, y: 7.920879, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2948,6 +2965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc3c8cb841f2acc4fa627ad752036f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 5
+  _jumpForce: 7.5
 --- !u!1 &1517887688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,8 +2978,8 @@ GameObject:
   - component: {fileID: 1517887689}
   - component: {fileID: 1517887691}
   - component: {fileID: 1517887690}
-  - component: {fileID: 1517887692}
   - component: {fileID: 1517887694}
+  - component: {fileID: 1517887692}
   - component: {fileID: 1517887693}
   m_Layer: 0
   m_Name: GroundLayer
@@ -5300,7 +5319,7 @@ TilemapCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517887688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5323,7 +5342,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths: []

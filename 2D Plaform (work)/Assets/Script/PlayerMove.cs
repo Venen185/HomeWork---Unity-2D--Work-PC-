@@ -2,43 +2,63 @@
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField] private float _speed = 5;
+    [SerializeField] private float _jumpForce = 10;
+
+    private float horizontal;
+
     Animator animator;
     Rigidbody2D rigidBody2DMovement;
-    SpriteRenderer spiriteRendered;
+    SpriteRenderer spriteRendered;
 
-    // Start is called before the first frame update
+    private bool _inAir;
+    private bool _jump;
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody2DMovement = GetComponent<Rigidbody2D>();
-        spiriteRendered = GetComponent<SpriteRenderer>();
+        spriteRendered = GetComponent<SpriteRenderer>();
     }
-
-    private void FixedUpdate()
+    private void Update()
     {
-        if (Input.GetKey("d") || Input.GetKey("right"))
+        _jump = (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && !_inAir;
+
+        horizontal = Input.GetAxis("Horizontal");
+
+        spriteRendered.flipX = horizontal < 0 ? true : (horizontal == 0 ? spriteRendered.flipX : false);
+
+        if (horizontal != 0)
         {
-            rigidBody2DMovement.velocity = new Vector2(10, rigidBody2DMovement.velocity.y);
-            animator.Play("Player_run");
-            spiriteRendered.flipX = false;
-        }
-        else if (Input.GetKey("a") || Input.GetKey("left"))
-        {
-            rigidBody2DMovement.velocity = new Vector2(-10, rigidBody2DMovement.velocity.y);
-            animator.Play("Player_run");
-            spiriteRendered.flipX = true;
+            animator.SetTrigger("Run");
         }
         else
         {
-            animator.Play("Player_idle");
-            rigidBody2DMovement.velocity = new Vector2(0, rigidBody2DMovement.velocity.y);
+            animator.SetTrigger("Idle");
         }
+    }
+    private void FixedUpdate()
+    {
+        rigidBody2DMovement.velocity = new Vector2(_speed * horizontal, rigidBody2DMovement.velocity.y);
 
-        if (Input.GetKey("space") || Input.GetKey("up"))
+        if (_jump)
         {
-            rigidBody2DMovement.velocity = new Vector2(rigidBody2DMovement.velocity.x, 3);
-            animator.Play("Player_jump");
+            rigidBody2DMovement.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump");
         }
+    }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _inAir = false;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _inAir = true;
+        }
     }
 }
