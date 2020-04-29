@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\CoinCollect.cs" />
+    <Compile Include="Assets\Script\CoinSpawner.cs" />
     <Compile Include="Assets\Script\PlayerMove.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Damir/Documents/GitHub/HomeWork---Unity-2D--Work-PC-/2D Plaform (work)/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

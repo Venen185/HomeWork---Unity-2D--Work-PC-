@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
 
     private bool _inAir;
     private bool _jump;
+    private bool _downMove; 
+    private bool _isFalling;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -35,6 +37,14 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetTrigger("Idle");
         }
+
+        _downMove = rigidBody2DMovement.velocity.y < 0;
+        if (_inAir && _downMove && !_isFalling)
+        {
+            _isFalling = true;
+            animator.SetTrigger("Fall");
+        }
+
     }
     private void FixedUpdate()
     {
@@ -52,6 +62,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             _inAir = false;
+            _isFalling = false;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
