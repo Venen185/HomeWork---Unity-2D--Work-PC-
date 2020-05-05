@@ -13,7 +13,7 @@ public class CoinSpawner : MonoBehaviour
         {
             _nextCoinSpawnTime = Time.time + SpawnRate;
             Instantiate(_coin, transform.position, transform.rotation);
-            
+
         }
     }
 }

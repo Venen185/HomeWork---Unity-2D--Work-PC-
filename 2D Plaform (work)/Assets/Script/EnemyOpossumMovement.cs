@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-
-public class EnemyOpossumMovement : MonoBehaviour
+public class EnemyMover : MonoBehaviour
 {
     SpriteRenderer spriteRendered;
 
@@ -43,6 +42,5 @@ public class EnemyOpossumMovement : MonoBehaviour
         {
             spriteRendered.flipX = true;
         }
-
     }
 }
